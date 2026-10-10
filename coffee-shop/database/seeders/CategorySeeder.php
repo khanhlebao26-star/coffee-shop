@@ -7,32 +7,15 @@ use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
-
-    public $categories = [
-        [
-            'id' => 1,
-            'name' => 'Cafe',
-            'description' => '',
-        ],
-        [
-            'id' => 2,
-            'name' => 'Chicken',
-            'description' => '',
-        ],
-    ];
-
-    private function getCategories()
-    {
-        return $this->categories;
-    }
-
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        foreach ($this->getCategories() as $category) {
-            Category::create($category);
-        }
+        $remaining = max(0, 1000 - Category::count());
+
+        Category::factory()
+            ->count($remaining)
+            ->create();
     }
 }
