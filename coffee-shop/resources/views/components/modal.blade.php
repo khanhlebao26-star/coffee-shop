@@ -36,7 +36,11 @@
         } else {
             document.body.classList.remove('overflow-y-hidden');
         }
-    })" x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null;" x-on:close.window="show = false"
+    })" x-on:open-modal.window="
+        const detail = $event.detail;
+        const modalName = Array.isArray(detail) ? detail[0] : (detail.name ?? detail);
+        show = modalName === '{{ $name }}';
+    " x-on:close.window="show = false"
     x-on:keydown.escape.window="show = false" x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()" x-show="show"
     class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50" style="display: {{ $show ? 'block' : 'none' }};">
