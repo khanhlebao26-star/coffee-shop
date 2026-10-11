@@ -5,7 +5,7 @@
         </x-slot:title>
 
         <x-slot:body>
-            <div class="grid gird-cols-1 gap-6">
+            <div class="grid grid-cols-1 gap-6">
                 <img class="object-cover w-full h-64" src="{{ $product->display_image_url }}?w=600" alt="product image" />
 
                 <span class="text-on-surface-600 text-3xl font-bold">
