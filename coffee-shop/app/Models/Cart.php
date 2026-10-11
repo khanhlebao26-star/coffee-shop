@@ -35,6 +35,6 @@ class Cart extends Model
 
     public function getFormattedTotalAmountAttribute(): string
     {
-        return number_format($this->total_amount) . '' . $this->currency;
+        return number_format($this->total_amount) . ' ' . $this->currency;
     }
 }
